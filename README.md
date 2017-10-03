@@ -5,7 +5,7 @@
 
 **NOTE:** This app and the associated code is NOT production quality, its pure purpose is to demonstrate the full flow of custom interactions in Journey Builder
 
-### Pre-Requisites
+### Pre-Requisites Sara
 
 * Node.js (to test locally)
 * Must have an ExactTarget Marketing Cloud account
