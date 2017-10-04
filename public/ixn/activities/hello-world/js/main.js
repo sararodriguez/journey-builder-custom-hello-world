@@ -14,7 +14,7 @@ requirejs.config({
 });
 
 requirejs( ['vendor/jquery.min', 'HelloWorld'], function( $, HelloWorld ) {
-	//console.log( 'REQUIRE LOADED' );
+	console.log( 'REQUIRE LOADED' );
 });
 
 requirejs.onError = function( err ) {

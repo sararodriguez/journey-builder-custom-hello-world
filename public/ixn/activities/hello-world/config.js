@@ -1,7 +1,68 @@
-define([], function(){      
+define([], function(){
     return {
+        "workflowApiVersion": "1.0",
+        "metaData": {
+            "version": "2.0",
+            "icon": "images/jb-icon.jpg",
+            "iconSmall": "images/jb-icon.jpg"
+        },
+        "type": "REST",
+        "lang": {
+            "en-US": {
+                "name": "Hello World Activity 2",
+                "description": "Activity simply posts the data into an array for display on the App's home page."
+            }
+        },
+        "arguments": {
+            "execute": {
+                "inArguments":[
+                    { "name":"{{Contact.Attribute.Sara-Data-Extension.FirstName}}"},
+                    /*{ "lastName":"{{Contact.Attribute.Sara-Data-Extension.LastName}}"},
+                    { "emailAddress": "{{Contact.Default.Email}}"}*/
+                ],
+                "outArguments": [
+                    { "caseID":"number" }
+                ],
+                "url": "https://__insert_your_custom_activity_endpoint__/ixn/activities/create-case/execute/",
+                "verb": "POST",
+                "body": "",
+                "header": "",
+                "format": "json",
+                "useJwt": false,
+                "timeout": 10000
+            }
+        },
+        "configurationArguments": {
+            "applicationExtensionKey": "jb-activity-desk-create-case",
+            "defaults": { "priority": "4"},
+            "save": {
+                "url": "http://www.rcv-cartera.com/demo-app/public/ixn/activities/create-case/save/",
+                "body": "",
+                "verb": "POST",
+                "useJwt": false
+            },
+            "publish": {
+                "url": "http://www.rcv-cartera.com/demo-app/public/ixn/activities/create-case/publish/",
+                "verb": "POST",
+                "body": "",
+                "useJwt": false
+            },
+            "validate": {
+                "url": "http://www.rcv-cartera.com/demo-app/public/ixn/activities/create-case/validate/",
+                "verb": "POST",
+                "body": "",
+                "useJwt": false
+            }
+        },
+        "edit": {
+            "url": "http://www.rcv-cartera.com/demo-app/public/ixn/activities/create-case/",
+            "height": 400,
+            "width": 500
+        }
+    };
+    /*return {
         "icon": "images/jb-icon.jpg",
-        "iconSmall": "images/jb-icon.jpg", 
+        "iconSmall": "images/jb-icon.jpg",
         "key": "jbdev-ixn-api-v1-test-harness-activity",
         "partnerApiObjectTypeId": "IXN.CustomActivity.REST",
         "lang": {
@@ -53,5 +114,5 @@ define([], function(){
             "height": 400,
             "width": 500
         }
-};
+    };*/
 });
