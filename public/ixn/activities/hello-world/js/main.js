@@ -18,7 +18,7 @@ requirejs( ['vendor/jquery.min', 'HelloWorld'], function( $, HelloWorld ) {
 });
 
 requirejs.onError = function( err ) {
-	//console.log( "REQUIRE ERROR: ", err );
+	console.log( "REQUIRE ERROR: ", err );
 	if( err.requireType === 'timeout' ) {
 		console.log( 'modules: ' + err.requireModules );
 	}
