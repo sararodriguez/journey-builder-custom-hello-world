@@ -17,16 +17,7 @@
                     "contactLastName": "{{Contact.Default.LastName}}"
                 },
                 {
-                    "contactIdentifier": "{{Contact.Key}}"
-                },
-                {
                     "emailAddress": "{{InteractionDefaults.Email}}"
-                },
-                {
-                    "twitterHandle": "{{Contact.Default.Twitter}}"
-                },
-                {
-                    "lastLogin": "{{Contact.Attribute.Engagement.LastLogin}}"
                 }
             ],
             "outArguments": [
