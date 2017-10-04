@@ -5,7 +5,7 @@
         "iconSmall": "images/jb-icon.jpg",
         "category": "message"
     },
-    "type": "REST",
+    "type": "REST-1",
     "lang": {
         "en-US": {
             "name": "Hello World Activity 2",
@@ -34,9 +34,6 @@
         },
         "validate": {
             "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/validate"
-        },
-        "stop": {
-            "url": "URI/for/your/activity/stop"
         }
     },
     "userInterfaces": {
