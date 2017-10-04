@@ -1,45 +1,70 @@
 {
-    "workflowApiVersion": "1.0",
-    "type": "MOBILE",
+    "workflowApiVersion": "1.1",
+    "metaData": {
+        "icon": "images/jb-icon.jpg",
+        "iconSmall": "images/jb-icon.jpg",
+        "category": "message"
+    },
+    "type": "REST",
     "lang": {
         "en-US": {
-            "name": "My Custom Activity",
-            "description": "This activity will make the world a better place"
+            "name": "Hello World Activity 2",
+            "description": "Prueba descripción"
         }
     },
     "arguments": {
         "execute": {
-            "inArguments": [
+            "inArguments":[
                 {
                     "contactFirstName": "{{Contact.Default.FirstName}}"
                 },
                 {
                     "contactLastName": "{{Contact.Default.LastName}}"
-                },
-                {
-                    "emailAddress": "{{InteractionDefaults.Email}}"
                 }
             ],
             "outArguments": [
-                {
-                    "name": ""
-                }
+                { "accountId":"number" }
             ],
-            "url": "https://app-baz.herokuapp.com/ixn/activities/execute"
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/execute",
+            "verb": "POST",
+            "body": "",
+            "header": "",
+            "format": "json",
+            "useJwt": false,
+            "timeout": 10000
         }
     },
     "configurationArguments": {
         "applicationExtensionKey": "sr-hello-world-activity-srodriguez",
         "save": {
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/save",
+            "body": "",
+            "verb": "POST",
+            "useJwt": false
         },
         "publish": {
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/publish",
+            "verb": "POST",
+            "body": "",
+            "useJwt": false
         },
         "validate": {
-        },
-        "edit": {
-            "uri": "https://app-baz.herokuapp.com/ixn/activities/hello-world",
-            "height": 350,
-            "width": 550
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/validate",
+            "verb": "POST",
+            "body": "",
+            "useJwt": false
         }
+    },
+    "userInterfaces": {
+        "configModal": {
+            "height": 200,
+            "width": 300,
+            "fullscreen": true
+        }
+    },
+    "edit": {
+        "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world",
+        "height": 400,
+        "width": 500
     }
 }
