@@ -23,7 +23,7 @@
                 }
             ],
             "outArguments": [
-                { "accountId":"number" }
+                { "accountId":"" }
             ],
             "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/execute",
             "verb": "POST",
