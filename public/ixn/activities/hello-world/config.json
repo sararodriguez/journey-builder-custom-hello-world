@@ -16,10 +16,10 @@
         "execute": {
             "inArguments":[
                 {
-                    "contactFirstName": "{{Contact.Default.FirstName}}"
+                    "contactFirstName": "{{Contact.Attribute.Sara-Data-Extension.Nombre}}"
                 },
                 {
-                    "contactLastName": "{{Contact.Default.LastName}}"
+                    "contactLastName": "{{Contact.Attribute.Sara-Data-Extension.Apellido}}"
                 }
             ],
             "outArguments": [
