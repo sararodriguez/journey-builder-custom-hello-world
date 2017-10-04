@@ -15,10 +15,10 @@ var app = express();
 // Register configs for the environments where the app functions
 // , these can be stored in a separate file using a module like config
 var APIKeys = {
-    appId           : '__insert_your_app_id__',
-    clientId        : '__insert_your_app_client_id__',
-    clientSecret    : '__insert_your_app_client_secret__',
-    appSignature    : '__insert_your_app_signature__',
+    appId           : '80fa3e29-e586-4728-b728-59871a08991f',
+    clientId        : 'bui8mm6pm8irb6hmfafzoavl',
+    clientSecret    : 'twJkcPkfurzNSvpEnKaTygfy',
+    appSignature    : 'h2lpme0xsotjjxthbifs3q4kfqrpmubq0ivld3poobgnrz5lf42cm0gfdr5lu0fwb1ywzpcs3uhbyacxiojv5ynami2campgdmzbehsjzdizu5ojkcvvt5ytkeoayfskhsw0zsbvshvkqek5ix2bc02oecemnejzlqorighdvodekmf3vncmfj1beicz131p1gdnoxxkkh0z11z1x4iiejmsuli4el25omlhd13fydjk1gxm1uli4dfzwuuz42s',
     authUrl         : 'https://auth.exacttargetapis.com/v1/requestToken?legacy=1'
 };
 
@@ -79,14 +79,14 @@ app.post('/ixn/triggers/hello-world/', trigger.edit );
 // Abstract Event Handler
 app.post('/fireEvent/:type', function( req, res ) {
     var data = req.body;
-    var triggerIdFromAppExtensionInAppCenter = '__insert_your_trigger_key_here__';
-    var JB_EVENT_API = 'https://www.exacttargetapis.com/interaction-experimental/v1/events';
+    var triggerIdFromAppExtensionInAppCenter = 'sr-hello-world-trigger-srodriguez';
+    var JB_EVENT_API = 'https://kvader-developer-edition.na24.force.com/services/apexrest/myservice';
     var reqOpts = {};
 
     if( 'helloWorld' !== req.params.type ) {
         res.send( 400, 'Unknown route param: "' + req.params.type +'"' );
     } else {
-        // Hydrate the request
+        // Hyd  rate the request
         reqOpts = {
             url: JB_EVENT_API,
             method: 'POST',

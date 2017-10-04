@@ -16,14 +16,14 @@ define([], function(){
         "arguments": {
             "execute": {
                 "inArguments":[
-                    { "name":"{{Contact.Attribute.Sara-Data-Extension.FirstName}}"},
+                    { "name":"{{Contact.Attribute.Sara-Data-Extension.FirstName}}"}
                     /*{ "lastName":"{{Contact.Attribute.Sara-Data-Extension.LastName}}"},
                     { "emailAddress": "{{Contact.Default.Email}}"}*/
                 ],
                 "outArguments": [
                     { "caseID":"number" }
                 ],
-                "url": "https://__insert_your_custom_activity_endpoint__/ixn/activities/create-case/execute/",
+                "url": "https://app-baz.herokuapp.com/public/ixn/activities/hello-world/execute/",
                 "verb": "POST",
                 "body": "",
                 "header": "",
@@ -33,29 +33,29 @@ define([], function(){
             }
         },
         "configurationArguments": {
-            "applicationExtensionKey": "jb-activity-desk-create-case",
+            "applicationExtensionKey": "sr-hello-world-activity-srodriguez",
             "defaults": { "priority": "4"},
             "save": {
-                "url": "http://www.rcv-cartera.com/demo-app/public/ixn/activities/create-case/save/",
+                "url": "https://app-baz.herokuapp.com/public/ixn/activities/hello-world/save/",
                 "body": "",
                 "verb": "POST",
                 "useJwt": false
             },
             "publish": {
-                "url": "http://www.rcv-cartera.com/demo-app/public/ixn/activities/create-case/publish/",
+                "url": "https://app-baz.herokuapp.com/public/ixn/activities/hello-world/publish/",
                 "verb": "POST",
                 "body": "",
                 "useJwt": false
             },
             "validate": {
-                "url": "http://www.rcv-cartera.com/demo-app/public/ixn/activities/create-case/validate/",
+                "url": "https://app-baz.herokuapp.com/public/ixn/activities/hello-world/validate/",
                 "verb": "POST",
                 "body": "",
                 "useJwt": false
             }
         },
         "edit": {
-            "url": "http://www.rcv-cartera.com/demo-app/public/ixn/activities/create-case/",
+            "url": "https://app-baz.herokuapp.com/public/ixn/activities/hello-world/",
             "height": 400,
             "width": 500
         }
@@ -74,7 +74,7 @@ define([], function(){
         "category": "messaging",
         "version": "1.0",
         "apiVersion": "1.0",
-       "execute": {
+        "execute": {
             "uri": "https://jb-ixn-v1-test.herokuapp.com/ixn/activities/hello-world/execute/",
 			"inArguments": [],
 			"outArguments": [],
