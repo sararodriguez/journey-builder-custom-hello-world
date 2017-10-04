@@ -10,7 +10,7 @@ define([], function(){
         "lang": {
             "en-US": {
                 "name": "Hello World Activity 2",
-                "description": "Activity simply posts the data into an array for display on the App's home page."
+                "description": "Prueba descripción"
             }
         },
         "arguments": {
