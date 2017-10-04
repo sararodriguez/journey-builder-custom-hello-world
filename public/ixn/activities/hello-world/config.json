@@ -6,7 +6,7 @@
         "category": "message",
         "version": "1.0"
     },
-    "type": "REST",
+    "type": "REST-1",
     "lang": {
         "en-US": {
             "name": "Hello World Activity 2",
