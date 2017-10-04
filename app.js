@@ -73,13 +73,13 @@ app.post('/ixn/activities/hello-world/validate/', activity.validate );
 app.post('/ixn/activities/hello-world/publish/', activity.publish );
 app.post('/ixn/activities/hello-world/execute/', activity.execute );
 
-// Custom Hello World Trigger Route
-app.post('/ixn/triggers/hello-world/', trigger.edit );
+// Custom Hello World Activity Route
+app.post('/ixn/activities/hello-world/', activity.edit );
 
 // Abstract Event Handler
 app.post('/fireEvent/:type', function( req, res ) {
     var data = req.body;
-    var triggerIdFromAppExtensionInAppCenter = 'sr-hello-world-trigger-srodriguez';
+    var triggerIdFromAppExtensionInAppCenter = 'srodriguezJBCustomHelloWorldApp';
     var JB_EVENT_API = 'https://kvader-developer-edition.na24.force.com/services/apexrest/myservice';
     var reqOpts = {};
 
