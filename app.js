@@ -79,7 +79,7 @@ app.post('/ixn/activities/hello-world/', activity.edit );
 // Abstract Event Handler
 app.post('/fireEvent/:type', function( req, res ) {
     var data = req.body;
-    var triggerIdFromAppExtensionInAppCenter = 'srodriguezJBCustomHelloWorldApp';
+    var triggerIdFromAppExtensionInAppCenter = 'sr-hello-world-trigger-srodriguez';
     var JB_EVENT_API = 'https://kvader-developer-edition.na24.force.com/services/apexrest/myservice';
     var reqOpts = {};
 
