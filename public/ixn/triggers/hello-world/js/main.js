@@ -14,7 +14,7 @@ requirejs.config({
 });
 
 requirejs( ['vendor/jquery.min', 'helloWorldTrigger'], function( $, helloWorldTrigger ) {
-	//console.log( 'REQUIRE LOADED' );
+	console.log( 'REQUIRE LOADED TRIGGER' );
 });
 
 requirejs.onError = function( err ) {
