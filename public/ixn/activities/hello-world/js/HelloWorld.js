@@ -17,8 +17,10 @@ define( function( require ) {
 	// "error" property containing the error message
 	connection.on('getTokens', function( data ) {
 		if( data.error ) {
+			console.log("Dentro de If getTokens");
 			console.error( data.error );
 		} else {
+			console.log("Obtenemos Token data");
 			tokens = data;
 		}
 	});
@@ -74,5 +76,5 @@ define( function( require ) {
 
 	// When everything has been configured for this activity, trigger
 	// the save:
-	// connection.trigger('save', 
+	// connection.trigger('save',
 });
