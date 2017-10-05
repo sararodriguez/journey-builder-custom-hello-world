@@ -8,7 +8,7 @@ var path        = require('path');
 var request     = require('request');
 var routes      = require('./routes');
 var activity    = require('./routes/activity');
-var trigger     = require('./routes/trigger');
+//var trigger     = require('./routes/trigger');
 
 var app = express();
 
