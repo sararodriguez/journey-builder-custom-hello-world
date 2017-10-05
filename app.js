@@ -86,7 +86,7 @@ app.post('/fireEvent/:type', function( req, res ) {
     if( 'helloWorld' !== req.params.type ) {
         res.send( 400, 'Unknown route param: "' + req.params.type +'"' );
     } else {
-        // Hyd  rate the request
+        // Hyd rate the request
         reqOpts = {
             url: JB_EVENT_API,
             method: 'POST',
