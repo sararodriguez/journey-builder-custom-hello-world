@@ -83,7 +83,7 @@ app.post('/fireEvent/:type', function( req, res ) {
     var JB_EVENT_API = 'https://kvader-developer-edition.na24.force.com/services/apexrest/myservice';
     var reqOpts = {};
 
-    if( 'helloWorld' !== req.params.type ) {
+    if( 'HelloWorld' !== req.params.type ) {
         res.send( 400, 'Unknown route param: "' + req.params.type +'"' );
     } else {
         // Hyd  rate the request
