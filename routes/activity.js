@@ -1,5 +1,5 @@
 'use strict';
-//var util = require( 'util' );
+var util = require( 'util' );
 
 // Deps
 var util = require( 'util' );
@@ -7,7 +7,6 @@ var util = require( 'util' );
 exports.logExecuteData = [];
 
 function logData( req ) {
-    console.log("archivo activity.js - logData");
     exports.logExecuteData.push({
         body: req.body,
         headers: req.headers,

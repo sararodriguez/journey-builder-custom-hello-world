@@ -20,11 +20,7 @@
                 },
                 {
                     "contactLastName": "{{Contact.Attribute.C7F4057C-D04F-4537-AB8E-CC18537D87FA.Apellido}}"
-                },
-                {
-                    "contactEmail": "{{Contact.Attribute.C7F4057C-D04F-4537-AB8E-CC18537D87FA.Email}}"
                 }
-
             ],
             "outArguments": [
                 { "accountId":"" }

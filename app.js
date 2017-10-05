@@ -8,7 +8,7 @@ var path        = require('path');
 var request     = require('request');
 var routes      = require('./routes');
 var activity    = require('./routes/activity');
-//var trigger     = require('./routes/trigger');
+var trigger     = require('./routes/trigger');
 
 var app = express();
 
@@ -84,7 +84,6 @@ app.post('/fireEvent/:type', function( req, res ) {
     var reqOpts = {};
 
     if( 'helloWorld' !== req.params.type ) {
-        console.log("Dentro de if helloWord");
         res.send( 400, 'Unknown route param: "' + req.params.type +'"' );
     } else {
         // Hyd  rate the request

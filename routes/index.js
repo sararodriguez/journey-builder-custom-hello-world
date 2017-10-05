@@ -10,7 +10,7 @@ exports.index = function(req, res){
     if( !req.session.token ) {
         res.render( 'index', {
             title: 'Unauthenticated',
-            errorMessage: 'This app may only be loaded via the ExactTarget Marketing Cloud - Sara',
+            errorMessage: 'This app may only be loaded via the ExactTarget Marketing Cloud',
         });
     } else {
         res.render( 'index', {
