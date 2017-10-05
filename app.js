@@ -100,6 +100,8 @@ app.post('/fireEvent/:type', function( req, res ) {
             })
         };
 
+        console.log(reqOpts);
+
         request( reqOpts, function( error, response, body ) {
             if( error ) {
                 console.error( 'ERROR: ', error );
