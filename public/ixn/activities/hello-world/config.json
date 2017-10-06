@@ -1,11 +1,12 @@
 {
-    "workflowApiVersion": "2.0",
+    "workflowApiVersion": "1.1",
     "metaData": {
         "icon": "images/jb-icon.jpg",
         "iconSmall": "images/jb-icon.jpg",
         "category": "message"
     },
     "type": "REST",
+    "useSso": true,
     "lang": {
         "en-US": {
             "name": "Actividad Hello Word",
@@ -14,7 +15,7 @@
     },
     "arguments": {
         "execute": {
-            "inArguments":[
+            /*"inArguments":[
                 {
                     "contactFirstName": "{{Contact.Attribute.C7F4057C-D04F-4537-AB8E-CC18537D87FA.Nombre}}"
                 },
@@ -24,11 +25,13 @@
             ],
             "outArguments": [
                 { "accountId":"" }
-            ],
-            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/execute",
+            ],*/
+            "inArguments": [],
+            "outArguments": [],
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/execute/",
             "verb": "POST",
-            "body": "",
-            "header": "",
+            "body": "{\"config_js_body\": \"execute\"}",
+            "header": "{\"x-config-js-header\": \"execute\"}",
             "format": "json",
             "useJwt": false,
             "timeout": 10000
@@ -37,27 +40,36 @@
     "configurationArguments": {
         "applicationExtensionKey": "sr-hello-world-activity-srodriguez",
         "save": {
-            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/save",
-            "body": "",
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/save/",
+            "body": "{\"config_js_body\": \"save\"}",
+            "header": "{\"x-config-js-header\": \"save\"}",
             "verb": "POST",
-            "useJwt": false
-        },
-        "publish": {
-            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/publish",
-            "verb": "POST",
-            "body": "",
-            "useJwt": false
+            "format": "json",
+            "useJwt": false,
+            "timeout": 3000
         },
         "validate": {
-            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/validate",
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/validate/",
+            "body": "{\"config_js_body\": \"validate\"}",
+            "header": "{\"x-config-js-header\": \"validate\"}",
             "verb": "POST",
-            "body": "",
-            "useJwt": false
+            "format": "json",
+            "useJwt": false,
+            "timeout": 3000
+        },
+        "publish": {
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/publish/",
+            "body": "{\"config_js_body\": \"publish\"}",
+            "header": "{\"x-config-js-header\": \"publish\"}",
+            "verb": "POST",
+            "format": "json",
+            "useJwt": false,
+            "timeout": 3000
         }
     },
-    "useSso": true,
     "userInterfaces": {
         "configModal": {
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/",
             "height": 200,
             "width": 300,
             "fullscreen": true
