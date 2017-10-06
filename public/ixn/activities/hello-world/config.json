@@ -17,7 +17,7 @@
         "execute": {
             "inArguments": [],
             "outArguments": [],
-            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/execute/",
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/execute",
             "verb": "POST",
             "body": "{\"config_js_body\": \"execute\"}",
             "header": "{\"x-config-js-header\": \"execute\"}",
@@ -29,7 +29,7 @@
     "configurationArguments": {
         "applicationExtensionKey": "sr-hello-world-activity-srodriguez",
         "save": {
-            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/save/",
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/save",
             "body": "{\"config_js_body\": \"save\"}",
             "header": "{\"x-config-js-header\": \"save\"}",
             "verb": "POST",
@@ -38,7 +38,7 @@
             "timeout": 3000
         },
         "validate": {
-            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/validate/",
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/validate",
             "body": "{\"config_js_body\": \"validate\"}",
             "header": "{\"x-config-js-header\": \"validate\"}",
             "verb": "POST",
@@ -47,7 +47,7 @@
             "timeout": 3000
         },
         "publish": {
-            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/publish/",
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/publish",
             "body": "{\"config_js_body\": \"publish\"}",
             "header": "{\"x-config-js-header\": \"publish\"}",
             "verb": "POST",
@@ -58,7 +58,7 @@
     },
     "userInterfaces": {
         "configModal": {
-            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world/",
+            "url": "https://app-baz.herokuapp.com/ixn/activities/hello-world",
             "height": 200,
             "width": 300,
             "fullscreen": true
