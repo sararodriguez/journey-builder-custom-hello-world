@@ -2,77 +2,197 @@ define( function( require ) {
 	var Postmonger = require( 'postmonger' );
 	var $ = require( 'vendor/jquery.min' );
 
-    var connection = new Postmonger.Session();
-	var tokens;
-	var endpoints;
+	'use strict';
 
-    $(window).ready(function() {
-        connection.trigger('ready');
+	var connection = new Postmonger.Session();
+	var payload = {};
+	var lastStepEnabled = false;
+	var steps = [ // initialize to the same value as what's set in config.json for consistency
+		{ "label": "Step 1", "key": "step1" },
+		{ "label": "Step 2", "key": "step2" },
+		{ "label": "Step 3", "key": "step3" },
+		{ "label": "Step 4", "key": "step4", "active": false }
+	];
+	var currentStep = steps[0].key;
+
+	$(window).ready(onRender);
+
+	connection.on('initActivity', initialize);
+	connection.on('requestedTokens', onGetTokens);
+	connection.on('requestedEndpoints', onGetEndpoints);
+
+	connection.on('clickedNext', onClickedNext);
+	connection.on('clickedBack', onClickedBack);
+	connection.on('gotoStep', onGotoStep);
+
+	function onRender() {
+		// JB will respond the first time 'ready' is called with 'initActivity'
+		connection.trigger('ready');
+
 		connection.trigger('requestTokens');
 		connection.trigger('requestEndpoints');
-    })
 
-	// This listens for Journey Builder to send tokens
-	// Parameter is either the tokens data or an object with an
-	// "error" property containing the error message
-	connection.on('getTokens', function( data ) {
-		if( data.error ) {
-			console.error( data.error );
+		// Disable the next button if a value isn't selected
+		$('#select1').change(function() {
+			var message = getMessage();
+			connection.trigger('updateButton', { button: 'next', enabled: Boolean(message) });
+
+			$('#message').html(message);
+		});
+
+		// Toggle step 4 active/inactive
+		// If inactive, wizard hides it and skips over it during navigation
+		$('#toggleLastStep').click(function() {
+			lastStepEnabled = !lastStepEnabled; // toggle status
+			steps[3].active = !steps[3].active; // toggle active
+
+			connection.trigger('updateSteps', steps);
+		});
+	}
+
+	function initialize (data) {
+		if (data) {
+			payload = data;
+		}
+
+		var message;
+		var hasInArguments = Boolean(
+			payload['arguments'] &&
+			payload['arguments'].execute &&
+			payload['arguments'].execute.inArguments &&
+			payload['arguments'].execute.inArguments.length > 0
+		);
+
+		var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+
+		$.each(inArguments, function(index, inArgument) {
+			$.each(inArgument, function(key, val) {
+				if (key === 'message') {
+					message = val;
+				}
+			});
+		});
+
+		// If there is no message selected, disable the next button
+		if (!message) {
+			showStep(null, 1);
+			connection.trigger('updateButton', { button: 'next', enabled: false });
+			// If there is a message, skip to the summary step
 		} else {
-			tokens = data;
+			$('#select1').find('option[value='+ message +']').attr('selected', 'selected');
+			$('#message').html(message);
+			showStep(null, 3);
 		}
-	});
+	}
 
-	/**
-		If you want to have a multi-step configuration view, you need to manage the DOM manually.
-		You can filter what changes to make by implementing the following type of logic when Postmonger from the server triggers an "updateStep" call.
-		// connection.on('updateStep', step ) {
+	function onGetTokens (tokens) {
+		// Response: tokens = { token: <legacy token>, fuel2token: <fuel api token> }
+		// console.log(tokens);
+	}
 
-			if( step  >= 1 && step <= 3 ) {
-				$('.step').hide(); // All DOM elements which are steps should have this class (this hides them all)
-				$('#step' + step ).show(); // This selectively only displays the current step
-				// Allow the user to make any changes and when you're ready, use:
-				connection.trigger( 'updateStep', step ); 
-			}
-		}
-	**/
+	function onGetEndpoints (endpoints) {
+		// Response: endpoints = { restHost: <url> } i.e. "rest.s1.qa1.exacttarget.com"
+		// console.log(endpoints);
+	}
 
-	// This listens for Journey Builder to send endpoints
-	// Parameter is either the endpoints data or an object with an
-	// "error" property containing the error message
-	connection.on('getEndpoints', function( data ) {
-		if( data.error ) {
-			console.error( data.error );
+	function onClickedNext () {
+		if (
+			(currentStep.key === 'step3' && steps[3].active === false) ||
+			currentStep.key === 'step4'
+		) {
+			save();
 		} else {
-			endpoints = data;
+			connection.trigger('nextStep');
 		}
-	});
+	}
 
-    connection.on('requestPayload', function() {
-	 var payload = {};
- 
-        payload.options = {
-           
-        };
+	function onClickedBack () {
+		connection.trigger('prevStep');
+	}
 
-		//TODO: Shouldn't this come from the data?
-        payload.flowDisplayName = 'Hello World';
- 
-        connection.trigger('getPayload', payload);
-    });
+	function onGotoStep (step) {
+		showStep(step);
+		connection.trigger('ready');
+	}
 
-	// Journey Builder broadcasts this event to us after this module
-	// sends the "ready" method. JB parses the serialized object which
-	// consists of the Event Data and passes it to the
-	// "config.js.save.uri" as a POST
-    connection.on('populateFields', function(payload) {
-    });
+	function showStep(step, stepIndex) {
+		if (stepIndex && !step) {
+			step = steps[stepIndex-1];
+		}
 
-	// Trigger this method when updating a step. This allows JB to
-	// update the wizard.
-    //connection.trigger('updateStep', nextStep);
+		currentStep = step;
 
-	// When everything has been configured for this activity, trigger
-	// the save:
-	// connection.trigger('save',
+		$('.step').hide();
+
+		switch(currentStep.key) {
+			case 'step1':
+				$('#step1').show();
+				connection.trigger('updateButton', {
+					button: 'next',
+					enabled: Boolean(getMessage())
+				});
+				connection.trigger('updateButton', {
+					button: 'back',
+					visible: false
+				});
+				break;
+			case 'step2':
+				$('#step2').show();
+				connection.trigger('updateButton', {
+					button: 'back',
+					visible: true
+				});
+				connection.trigger('updateButton', {
+					button: 'next',
+					text: 'next',
+					visible: true
+				});
+				break;
+			case 'step3':
+				$('#step3').show();
+				connection.trigger('updateButton', {
+					button: 'back',
+					visible: true
+				});
+				if (lastStepEnabled) {
+					connection.trigger('updateButton', {
+						button: 'next',
+						text: 'next',
+						visible: true
+					});
+				} else {
+					connection.trigger('updateButton', {
+						button: 'next',
+						text: 'done',
+						visible: true
+					});
+				}
+				break;
+			case 'step4':
+				$('#step4').show();
+				break;
+		}
+	}
+
+	function save() {
+		var name = $('#select1').find('option:selected').html();
+		var value = getMessage();
+
+		// 'payload' is initialized on 'initActivity' above.
+		// Journey Builder sends an initial payload with defaults
+		// set by this activity's config.json file.  Any property
+		// may be overridden as desired.
+		payload.name = name;
+
+		payload['arguments'].execute.inArguments = [{ "message": value }];
+
+		payload['metaData'].isConfigured = true;
+
+		connection.trigger('updateActivity', payload);
+	}
+
+	function getMessage() {
+		return $('#select1').find('option:selected').attr('value').trim();
+	}
+
 });
