@@ -2,7 +2,7 @@
   "name": "helloWorldTwo",
   "version": "0.0.3",
   "private": true,
-  "scripts": {
+  /*"scripts": {
     "start": "node app.js"
   },
   "dependencies": {
@@ -12,7 +12,7 @@
     "require": "~0.5.0",
     "jwt-simple": "~0.1.0",
     "request": "~2.33.0"
-  },
+  },*/
   "engines": {
     "node": "6.5.0",
     "npm": "5.4.2"
