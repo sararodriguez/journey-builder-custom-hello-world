@@ -55,6 +55,7 @@
             "useJwt": false
         }
     },
+    "useSso": true,
     "userInterfaces": {
         "configModal": {
             "height": 200,
